@@ -3,6 +3,8 @@ package com.emboava.rickmortyapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val textView = findViewById<TextView>(R.id.textView)
+
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
         val retrofit: Retrofit = Retrofit.Builder()
@@ -26,12 +30,21 @@ class MainActivity : AppCompatActivity() {
         val rickAndMortyService: RickAndMortyService =
             retrofit.create(RickAndMortyService::class.java)
 
-        rickAndMortyService.getCharacterById().enqueue(object : Callback<Any> {
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+        rickAndMortyService.getCharacterById(10).enqueue(object : Callback<GetCharacterByIdResponse> {
+            override fun onResponse(call: Call<GetCharacterByIdResponse>, response: Response<GetCharacterByIdResponse>) {
                 Log.i("MainActivity", response.toString())
+
+                if (!response.isSuccessful){
+                    return Toast.makeText(this@MainActivity, "Unsucessful network call!", Toast.LENGTH_LONG).show()
+                }
+
+                val body = response.body()!!
+                val name = body.name
+
+                textView.text = name
             }
 
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+            override fun onFailure(call: Call<GetCharacterByIdResponse>, t: Throwable) {
                 Log.i("MainActivity", t.message ?: "Null message")
             }
         })
