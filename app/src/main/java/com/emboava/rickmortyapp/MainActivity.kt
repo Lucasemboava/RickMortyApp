@@ -2,20 +2,18 @@ package com.emboava.rickmortyapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: SharedViewModel by lazy {
+        ViewModelProvider(this)[SharedViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,44 +25,28 @@ class MainActivity : AppCompatActivity() {
         val originTextView = findViewById<AppCompatTextView>(R.id.originTextView)
         val speciesTextView = findViewById<AppCompatTextView>(R.id.speciesTextView)
 
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-
-        val rickAndMortyService: RickAndMortyService =
-            retrofit.create(RickAndMortyService::class.java)
-
-        rickAndMortyService.getCharacterById(10).enqueue(object : Callback<GetCharacterByIdResponse> {
-            override fun onResponse(call: Call<GetCharacterByIdResponse>, response: Response<GetCharacterByIdResponse>) {
-                Log.i("MainActivity", response.toString())
-
-                if (!response.isSuccessful){
-                    return Toast.makeText(this@MainActivity, "Unsucessful network call!", Toast.LENGTH_LONG).show()
-                }
-
-                val body = response.body()!!
-
-                nameTextView.text = body.name
-                aliveTextView.text = body.status
-                speciesTextView.text = body.species
-                originTextView.text = body.origin.name
-
-                if (body.gender.equals("male", true)) {
-                    genderImageView.setImageResource(R.drawable.ic_male_24)
-                } else {
-                    genderImageView.setImageResource(R.drawable.ic_female_24)
-                }
-
-                Picasso.get().load(body.image).into(headerImageView)
-
+        viewModel.refreshCharacter(54)
+        viewModel.characterByIdLiveData.observe(this) { response ->
+            if (response == null) {
+                Toast.makeText(this@MainActivity, "Unsucessful network call!", Toast.LENGTH_LONG)
+                    .show()
+                return@observe
             }
 
-            override fun onFailure(call: Call<GetCharacterByIdResponse>, t: Throwable) {
-                Log.i("MainActivity", t.message ?: "Null message")
+            nameTextView.text = response.name
+            aliveTextView.text = response.status
+            speciesTextView.text = response.species
+            originTextView.text = response.origin.name
+
+            if (response.gender.equals("male", true)) {
+                genderImageView.setImageResource(R.drawable.ic_male_24)
+            } else {
+                genderImageView.setImageResource(R.drawable.ic_female_24)
             }
-        })
+
+            Picasso.get().load(response.image).into(headerImageView)
+        }
     }
 }
+
