@@ -1,4 +1,4 @@
-package com.emboava.rickmortyapp
+package com.emboava.rickmortyapp.network
 
 import retrofit2.Response
 

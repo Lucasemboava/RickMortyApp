@@ -1,5 +1,6 @@
-package com.emboava.rickmortyapp
+package com.emboava.rickmortyapp.network
 
+import com.emboava.rickmortyapp.network.response.GetCharacterByIdResponse
 import retrofit2.Response
 
 class ApiClient(
