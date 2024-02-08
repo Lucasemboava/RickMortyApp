@@ -1,19 +1,23 @@
 package com.emboava.rickmortyapp.network
 
 import com.emboava.rickmortyapp.network.response.GetCharacterByIdResponse
+import com.emboava.rickmortyapp.network.response.GetCharactersPageResponse
 import retrofit2.Response
 
 class ApiClient(
     private val rickAndMortyService: RickAndMortyService
 ) {
     suspend fun getCharacterById(characterId: Int): SimpleResponse<GetCharacterByIdResponse> {
-        return safeCall { rickAndMortyService.getCharacterById(characterId) }
+        return safeApiCall { rickAndMortyService.getCharacterById(characterId) }
     }
 
-    private inline fun <T> safeCall(apiCall: () -> Response<T>): SimpleResponse<T> {
+    suspend fun getCharactersPage(pageIndex: Int): SimpleResponse<GetCharactersPageResponse>{
+        return safeApiCall { rickAndMortyService.getCharactersPage(pageIndex) }
+    }
+
+    private inline fun <T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
         return try {
             SimpleResponse.success(apiCall.invoke())
-
         } catch (e: Exception) {
             SimpleResponse.failure(e)
         }
