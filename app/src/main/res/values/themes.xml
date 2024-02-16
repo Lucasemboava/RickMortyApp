@@ -1,8 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.RickMortyApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.RickMortyApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="Theme.RickMortyApp" parent="Base.Theme.RickMortyApp" />
