@@ -2,12 +2,18 @@ package com.emboava.rickmortyapp.domain.mappers
 
 import com.emboava.rickmortyapp.domain.models.Character
 import com.emboava.rickmortyapp.network.response.GetCharacterByIdResponse
+import com.emboava.rickmortyapp.network.response.GetEpisodeByIdResponse
 
 object CharacterMapper {
 
-    fun buildFrom(response: GetCharacterByIdResponse): Character {
+    fun buildFrom(
+        response: GetCharacterByIdResponse,
+        episodes: List<GetEpisodeByIdResponse>
+    ): Character {
         return Character(
-            episodeList = emptyList(), // todo
+            episodeList = episodes.map {
+                EpisodeMapper.buildFrom(it)
+            },
             gender = response.gender,
             id = response.id,
             image = response.image,
