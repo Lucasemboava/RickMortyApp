@@ -1,10 +1,11 @@
 package com.emboava.rickmortyapp
 
+import com.emboava.rickmortyapp.domain.mappers.CharacterMapper
 import com.emboava.rickmortyapp.network.NetworkLayer
-import com.emboava.rickmortyapp.network.response.GetCharacterByIdResponse
+import com.emboava.rickmortyapp.domain.models.Character
 
 class SharedRepository {
-    suspend fun getCharacterById(characterId: Int): GetCharacterByIdResponse? {
+    suspend fun getCharacterById(characterId: Int): Character? {
         val request = NetworkLayer.apiClient.getCharacterById(characterId)
 
         if (request.failed) {
@@ -15,6 +16,6 @@ class SharedRepository {
             return null
         }
 
-        return request.body
+        return CharacterMapper.buildFrom(response = request.body)
     }
 }

@@ -22,11 +22,11 @@ class CharacterDetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel.characterByIdLiveData.observe(this) { response ->
+        viewModel.characterByIdLiveData.observe(this) { character ->
 
-            epoxyController.characterResponse = response
+            epoxyController.character = character
 
-            if (response == null) {
+            if (character == null) {
                 Toast.makeText(this@CharacterDetailActivity, "Unsucessful network call!", Toast.LENGTH_LONG)
                     .show()
                 return@observe
