@@ -79,4 +79,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     debugImplementation("com.github.chuckerteam.chucker:library:3.5.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.0")
+
+    //Jetpack navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 }
