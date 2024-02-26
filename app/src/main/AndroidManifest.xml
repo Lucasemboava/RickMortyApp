@@ -15,18 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RickMortyApp"
         tools:targetApi="31">
-        <activity
-            android:name=".CharacterDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".characters.CharacterListActivity"
-            android:exported="true"/>
 
-        <activity android:name=".NavGraphActivity"
+        <activity
+            android:name=".NavGraphActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
