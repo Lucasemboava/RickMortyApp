@@ -36,6 +36,9 @@ class NavGraphActivity : AppCompatActivity() {
         )
 
         findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
+        findViewById<NavigationView>(R.id.nav_view).setCheckedItem(
+            navController.graph.startDestinationId
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
