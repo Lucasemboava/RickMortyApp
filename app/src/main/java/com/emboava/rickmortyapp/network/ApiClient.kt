@@ -3,6 +3,7 @@ package com.emboava.rickmortyapp.network
 import com.emboava.rickmortyapp.network.response.GetCharacterByIdResponse
 import com.emboava.rickmortyapp.network.response.GetCharactersPageResponse
 import com.emboava.rickmortyapp.network.response.GetEpisodeByIdResponse
+import com.emboava.rickmortyapp.network.response.GetEpisodesPageResponse
 import retrofit2.Response
 
 class ApiClient(
@@ -12,7 +13,7 @@ class ApiClient(
         return safeApiCall { rickAndMortyService.getCharacterById(characterId) }
     }
 
-    suspend fun getCharactersPage(pageIndex: Int): SimpleResponse<GetCharactersPageResponse>{
+    suspend fun getCharactersPage(pageIndex: Int): SimpleResponse<GetCharactersPageResponse> {
         return safeApiCall { rickAndMortyService.getCharactersPage(pageIndex) }
     }
 
@@ -21,7 +22,11 @@ class ApiClient(
     }
 
     suspend fun getEpisodeRange(episodeRage: String): SimpleResponse<List<GetEpisodeByIdResponse>> {
-        return  safeApiCall { rickAndMortyService.getEpisodeRange(episodeRage)  }
+        return safeApiCall { rickAndMortyService.getEpisodeRange(episodeRage) }
+    }
+
+    suspend fun  getEpisodesPage(pageIndex: Int): SimpleResponse<GetEpisodesPageResponse> {
+        return safeApiCall { rickAndMortyService.getEpisodesPage(pageIndex) }
     }
 
     private inline fun <T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
