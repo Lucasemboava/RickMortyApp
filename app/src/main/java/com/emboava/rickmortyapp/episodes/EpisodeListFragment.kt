@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import com.emboava.rickmortyapp.R
 import com.emboava.rickmortyapp.databinding.FragmentEpisodeListBinding
-import com.emboava.rickmortyapp.domain.models.Episode
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -28,7 +27,7 @@ class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
         val epoxyController = EpisodeListEpoxyController()
 
         lifecycleScope.launch {
-            viewModel.flow.collectLatest { pagingData: PagingData<Episode> ->
+            viewModel.flow.collectLatest { pagingData: PagingData<EpisodesUiModel> ->
                 epoxyController.submitData(pagingData)
             }
         }
