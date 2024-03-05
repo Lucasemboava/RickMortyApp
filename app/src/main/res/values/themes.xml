@@ -6,5 +6,14 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.RickMortyApp" parent="">
+        <item name="cornerSize">10%</item>
+        <item name="cornerFamily">cut</item>
+        <!--        <item name="cornerSizeTopLeft">35%</item>-->
+        <!--        <item name="cornerSizeBottomRight">35%</item>-->
+    </style>
+
     <style name="Theme.RickMortyApp" parent="Base.Theme.RickMortyApp" />
+
+
 </resources>
