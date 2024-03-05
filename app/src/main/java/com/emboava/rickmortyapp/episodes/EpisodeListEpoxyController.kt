@@ -10,8 +10,8 @@ import com.emboava.rickmortyapp.epoxy.ViewBindingKotlinModel
 
 class EpisodeListEpoxyController : PagingDataEpoxyController<EpisodesUiModel>() {
     override fun buildItemModel(currentPosition: Int, item: EpisodesUiModel?): EpoxyModel<*> {
-        return when(item!!) {
-            is EpisodesUiModel.Item ->{
+        return when (item!!) {
+            is EpisodesUiModel.Item -> {
                 val episode = (item as EpisodesUiModel.Item).episode
                 EpisodeListItemEpoxyModel(
                     episode = episode,
@@ -21,7 +21,7 @@ class EpisodeListEpoxyController : PagingDataEpoxyController<EpisodesUiModel>() 
                 ).id("episode_${episode.id}")
             }
 
-            is  EpisodesUiModel.Header -> {
+            is EpisodesUiModel.Header -> {
                 val headerText = (item as EpisodesUiModel.Header).text
                 EpisodeListTitleEpoxyModel(headerText).id("header_$headerText")
             }
@@ -35,7 +35,7 @@ class EpisodeListEpoxyController : PagingDataEpoxyController<EpisodesUiModel>() 
         override fun ModelEpisodeListItemBinding.bind() {
             episodeNameTextView.text = episode.name
             episodeAirDateTextView.text = episode.airDate
-            episodeNumberTextView.text = episode.episode
+            episodeNumberTextView.text = episode.getFormattedSeasonTruncated()
 
             root.setOnClickListener { onClick(episode.id) }
         }
