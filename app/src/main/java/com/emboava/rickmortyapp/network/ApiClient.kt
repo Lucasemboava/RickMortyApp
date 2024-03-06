@@ -9,12 +9,19 @@ import retrofit2.Response
 class ApiClient(
     private val rickAndMortyService: RickAndMortyService
 ) {
+
+    // region Characters
     suspend fun getCharacterById(characterId: Int): SimpleResponse<GetCharacterByIdResponse> {
         return safeApiCall { rickAndMortyService.getCharacterById(characterId) }
     }
 
     suspend fun getCharactersPage(pageIndex: Int): SimpleResponse<GetCharactersPageResponse> {
         return safeApiCall { rickAndMortyService.getCharactersPage(pageIndex) }
+    }
+
+    suspend fun getMultipleCharacters(characterList: List<String>):
+            SimpleResponse<List<GetCharacterByIdResponse>> {
+        return safeApiCall { rickAndMortyService.getMultipleCharacters(characterList) }
     }
 
     suspend fun getEpisodeById(episodeId: Int): SimpleResponse<GetEpisodeByIdResponse> {
@@ -25,7 +32,7 @@ class ApiClient(
         return safeApiCall { rickAndMortyService.getEpisodeRange(episodeRage) }
     }
 
-    suspend fun  getEpisodesPage(pageIndex: Int): SimpleResponse<GetEpisodesPageResponse> {
+    suspend fun getEpisodesPage(pageIndex: Int): SimpleResponse<GetEpisodesPageResponse> {
         return safeApiCall { rickAndMortyService.getEpisodesPage(pageIndex) }
     }
 

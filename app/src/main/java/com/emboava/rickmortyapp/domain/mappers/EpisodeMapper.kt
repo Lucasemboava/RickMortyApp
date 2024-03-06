@@ -1,17 +1,25 @@
 package com.emboava.rickmortyapp.domain.mappers
 
 import com.emboava.rickmortyapp.domain.models.Episode
+import com.emboava.rickmortyapp.network.response.GetCharacterByIdResponse
 import com.emboava.rickmortyapp.network.response.GetEpisodeByIdResponse
 
 object EpisodeMapper {
 
-    fun buildFrom(networkEpisode: GetEpisodeByIdResponse): Episode {
+    fun buildFrom(
+        networkEpisode: GetEpisodeByIdResponse,
+        networkCharacters: List<GetCharacterByIdResponse> = emptyList()
+    ): Episode {
         return Episode(
             id = networkEpisode.id,
             name = networkEpisode.name,
             airDate = networkEpisode.air_date,
             seasonNumber = getSeasonFromEpisodeString(networkEpisode.episode),
-            episodeNumber = getEpisodeFromEpisodeString(networkEpisode.episode)
+            episodeNumber = getEpisodeFromEpisodeString(networkEpisode.episode),
+            characters = networkCharacters.map{
+                CharacterMapper.buildFrom(it)
+            }
+
         )
     }
 
