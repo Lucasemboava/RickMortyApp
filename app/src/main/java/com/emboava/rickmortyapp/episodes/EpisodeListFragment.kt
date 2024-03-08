@@ -7,12 +7,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
+import com.emboava.rickmortyapp.NavGraphDirections
 import com.emboava.rickmortyapp.R
 import com.emboava.rickmortyapp.databinding.FragmentEpisodeListBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
+class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
     private var _binding: FragmentEpisodeListBinding? = null
     private val binding: FragmentEpisodeListBinding by lazy {
@@ -26,11 +27,10 @@ class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
         _binding = FragmentEpisodeListBinding.bind(view)
 
         val epoxyController = EpisodeListEpoxyController { episodeClickedId ->
-            val navDirections =
-                EpisodeListFragmentDirections
-                    .actionEpisodeListFragmentToEpisodeDetailBottomSheetFragment(
-                        episodeClickedId
-                    )
+            val navDirections = NavGraphDirections
+                .actionGlobalToEpisodeDetailBottomSheetFragment(
+                    episodeId = episodeClickedId
+                )
 
             findNavController().navigate(navDirections)
         }
