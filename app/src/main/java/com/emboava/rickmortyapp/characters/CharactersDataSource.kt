@@ -15,19 +15,14 @@ class CharactersDataSource(
         callback: LoadInitialCallback<Int, GetCharacterByIdResponse>
     ) {
         coroutineScope.launch {
-
-            val page = repository.getCharacterPage(1)
+            val page = repository.getCharactersPage(1)
 
             if (page == null) {
                 callback.onResult(emptyList(), null, null)
                 return@launch
             }
 
-            callback.onResult(
-                page.results,
-                null,
-                getPageIndexFromNext(page.info.next)
-            )
+            callback.onResult(page.results, null, getPageIndexFromNext(page.info.next))
         }
     }
 
@@ -36,18 +31,14 @@ class CharactersDataSource(
         callback: LoadCallback<Int, GetCharacterByIdResponse>
     ) {
         coroutineScope.launch {
-
-            val page = repository.getCharacterPage(params.key)
+            val page = repository.getCharactersPage(params.key)
 
             if (page == null) {
                 callback.onResult(emptyList(), null)
                 return@launch
             }
 
-            callback.onResult(
-                page.results,
-                getPageIndexFromNext(page.info.next)
-            )
+            callback.onResult(page.results, getPageIndexFromNext(page.info.next))
         }
     }
 
@@ -55,7 +46,7 @@ class CharactersDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, GetCharacterByIdResponse>
     ) {
-        //Nothing to do
+        // Nothing to do
     }
 
     private fun getPageIndexFromNext(next: String?): Int? {

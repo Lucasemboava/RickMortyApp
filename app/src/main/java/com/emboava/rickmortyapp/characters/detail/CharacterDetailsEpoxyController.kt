@@ -1,7 +1,8 @@
-package com.emboava.rickmortyapp
+package com.emboava.rickmortyapp.characters.detail
 
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
+import com.emboava.rickmortyapp.R
 import com.emboava.rickmortyapp.databinding.ModelCharacterDetailsDataPointBinding
 import com.emboava.rickmortyapp.databinding.ModelCharacterDetailsHeaderBinding
 import com.emboava.rickmortyapp.databinding.ModelCharacterDetailsImageBinding
@@ -139,4 +140,3 @@ class CharacterDetailsEpoxyController : EpoxyController() {
         }
     }
 }
-

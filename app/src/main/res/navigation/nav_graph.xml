@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="com.emboava.rickmortyapp.CharacterDetailFragment"
+        android:name="com.emboava.rickmortyapp.characters.detail.CharacterDetailFragment"
         android:label="Character Details"
         tools:layout="@layout/fragment_character_detail">
 
