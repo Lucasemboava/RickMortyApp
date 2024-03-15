@@ -1,17 +1,17 @@
 package com.emboava.rickmortyapp.characters
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.emboava.rickmortyapp.BaseFragment
 import com.emboava.rickmortyapp.R
 import java.lang.RuntimeException
 
-class CharacterListFragment : Fragment() {
+class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
 
     private val epoxyController = CharacterListPagingEpoxyController(::onCharacterSelected)
 

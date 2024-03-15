@@ -1,7 +1,6 @@
 package com.emboava.rickmortyapp.characters.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.emboava.rickmortyapp.BaseFragment
 import com.emboava.rickmortyapp.NavGraphDirections
 import com.emboava.rickmortyapp.R
 import com.emboava.rickmortyapp.SharedViewModel
 
-class CharacterDetailFragment : Fragment() {
+class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail) {
 
     private val viewModel: SharedViewModel by lazy {
         ViewModelProvider(this).get(SharedViewModel::class.java)

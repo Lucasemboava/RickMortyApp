@@ -2,18 +2,18 @@ package com.emboava.rickmortyapp.episodes
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
+import com.emboava.rickmortyapp.BaseFragment
 import com.emboava.rickmortyapp.NavGraphDirections
 import com.emboava.rickmortyapp.R
 import com.emboava.rickmortyapp.databinding.FragmentEpisodeListBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
+class EpisodeListFragment : BaseFragment(R.layout.fragment_episode_list) {
 
     private var _binding: FragmentEpisodeListBinding? = null
     private val binding: FragmentEpisodeListBinding by lazy {

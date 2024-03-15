@@ -5,9 +5,9 @@ import android.view.View
 import android.os.Handler
 import android.os.Looper
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.emboava.rickmortyapp.BaseFragment
 import com.emboava.rickmortyapp.R
 import com.emboava.rickmortyapp.databinding.FragmentCharacterSearchBinding
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class CharacterSearchFragment : Fragment(R.layout.fragment_character_search) {
+class CharacterSearchFragment : BaseFragment(R.layout.fragment_character_search) {
 
     private var _binding: FragmentCharacterSearchBinding? = null
     private val binding get() = _binding!!
