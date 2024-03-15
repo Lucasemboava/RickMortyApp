@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.emboava.rickmortyapp.CharacterListFragment"
+        android:name="com.emboava.rickmortyapp.characters.CharacterListFragment"
         android:label="Rick and Morty Characters"
         tools:layout="@layout/fragment_character_list">
         <action

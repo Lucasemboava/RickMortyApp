@@ -1,4 +1,4 @@
-package com.emboava.rickmortyapp
+package com.emboava.rickmortyapp.characters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.emboava.rickmortyapp.characters.CharacterListPagingEpoxyController
-import com.emboava.rickmortyapp.characters.CharactersViewModel
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.emboava.rickmortyapp.R
+import java.lang.RuntimeException
 
 class CharacterListFragment : Fragment() {
 
@@ -38,6 +38,7 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun onCharacterSelected(characterId: Int) {
+        // throw RuntimeException("for Firebase")
         val directions = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
             characterId = characterId
         )

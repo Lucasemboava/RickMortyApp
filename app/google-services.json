@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "905262535788",
+    "project_id": "rickmortyapp-66b6c",
+    "storage_bucket": "rickmortyapp-66b6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905262535788:android:0643d5aa5f6e78e845f449",
+        "android_client_info": {
+          "package_name": "com.emboava.rickmortyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRDvs8GM5VXFvQhQYLgvPVJdKimcdEKo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

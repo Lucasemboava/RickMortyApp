@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -53,35 +55,40 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
-    //Retrofit
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    //Moshi
+    // Moshi
     implementation("com.squareup.moshi:moshi:1.12.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
-    //Picasso
+    // Picasso
     implementation("com.squareup.picasso:picasso:2.71828")
 
-    //Coroutines
+    // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
-    //Airbnb Epoxy
+    // Airbnb Epoxy
     implementation("com.airbnb.android:epoxy:5.1.4")
     implementation("com.airbnb.android:epoxy-paging3:5.1.3")
     implementation("com.airbnb.android:epoxy-paging:4.4.1")
 
-    //Paging
+    // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 
-    //Logging Interceptor
+    // Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     debugImplementation("com.github.chuckerteam.chucker:library:3.5.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.0")
 
-    //Jetpack navigation
+    // Jetpack navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 }
